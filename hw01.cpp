@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "converstions.h"
 
 // Quinn Davis and Josh Carr
 
@@ -27,19 +28,11 @@ void binaryconversion(std::string bin) {
         return;
     }
 
-    int counter = 0;
-    for (int i = 1; i < bin.length(); i++) {
-        if (bin[i] != '0' && bin[i] != '1') {
-            std::cout << "Error: Invalid binary number" << std::endl;
-            return;
-        }
-        int curr_digit = bin[i] - '0';
-        counter = counter * 2 + curr_digit;
-    }
+    int dec = binary_to_decimal(bin);
 
-    std::string hex = "0x";
+    std::string hex = binary_to_hexadecimal(bin);
 
-    printresult(counter, bin, hex);
+    printresult(dec, bin, hex);
     return;
 }
 
@@ -55,9 +48,9 @@ void hexconversion(std::string hex) {
         return;
     }
 
-    int dec = 0;
+    std::string bin = hexadecimal_to_binary(hex);
 
-    std::string bin = "b";
+    int dec = binary_to_decimal(bin);
 
     printresult(dec, bin, hex);
     return;
@@ -76,9 +69,9 @@ void decimalconversion(std::string input) {
         return;
     }
 
-    std::string bin = "b";
+    std::string bin = decimal_to_binary(dec);
 
-    std::string hex = "0x";
+    std::string hex = binary_to_hexadecimal(bin);
 
     printresult(dec, bin, hex);
     return;
@@ -93,7 +86,7 @@ int main() {
     std::cout << "Input number: " << input << std::endl << std::endl;
 
 
-    // Checking 
+    // Checking
     if (input[0] == 'b') {
         binaryconversion(input);
     }
