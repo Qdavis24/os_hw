@@ -4,31 +4,35 @@
 
 // Quinn Davis and Josh Carr
 
-
 /**
- * Void function that prints the results from the conversions 
+ * Void function that prints the results from the conversions
  * Takes in integer dec, string bin, and string hex
  * Prints out each input with appropriate labels
-*/
-void printresult(int dec, std::string bin, std::string hex) {
+ */
+void printresult(int dec, std::string bin, std::string hex)
+{
     std::cout << "Decimal: " << dec << std::endl;
     std::cout << "Binary: " << bin << std::endl;
     std::cout << "Hexadecimal: " << hex << std::endl;
 }
 
 /**
- * Void function that converts a binary input to a decimal and hexadecimal 
+ * Void function that converts a binary input to a decimal and hexadecimal
  * Takes in a string bin
  * Checks to see if it is a valid binary number and then converts it to decimal and hexidecimal
  * Inputs results into printresult function
  */
-void binaryconversion(std::string bin) {
-    if (bin.length() != 9) {
+void binaryconversion(std::string bin)
+{
+    if (bin.length() != 9)
+    {
         std::cout << "Error: Invalid binary number" << std::endl;
         return;
     }
-    for (int i = 1; i < bin.length(); i++) {
-        if (bin[i] != '0' && bin[i] != '1') {
+    for (int i = 1; i < bin.length(); i++)
+    {
+        if (bin[i] != '0' && bin[i] != '1')
+        {
             std::cout << "Error: Invalid binary number" << std::endl;
             return;
         }
@@ -45,18 +49,22 @@ void binaryconversion(std::string bin) {
 }
 
 /**
- * Void function that converts a binary input to a decimal and hexadecimal 
+ * Void function that converts a binary input to a decimal and hexadecimal
  * Takes in a string hex
  * Checks to see if it is a valid hexidecimal number and then converts it to decimal and binary
  * Inputs results into printresult function
  */
-void hexconversion(std::string hex) {
-    if (hex.length() != 4) {
+void hexconversion(std::string hex)
+{
+    if (hex.length() != 4)
+    {
         std::cout << "Error: Invalid hexadecimal number" << std::endl;
         return;
     }
-    for (int i = 2; i < hex.length(); i++) {
-        if (!((hex[i] >= '0' && hex[i] <= '9') || (hex[i] >= 'A' && hex[i] <= 'F'))) {
+    for (int i = 2; i < hex.length(); i++)
+    {
+        if (!((hex[i] >= '0' && hex[i] <= '9') || (hex[i] >= 'A' && hex[i] <= 'F')))
+        {
             std::cout << "Error: Invalid hexadecimal number" << std::endl;
             return;
         }
@@ -71,15 +79,27 @@ void hexconversion(std::string hex) {
 }
 
 /**
- * Void function that converts a binary input to a decimal and hexadecimal 
+ * Void function that converts a binary input to a decimal and hexadecimal
  * Takes in a string input
  * Checks to see if it is a valid decimal number and then converts it to binary and hexidecimal
  * Inputs results into printresult function
  */
-void decimalconversion(std::string input) {
+void decimalconversion(std::string input)
+{
+    for (int i = 0; i < input.length(); i++)
+    {
+        if (input[i] < '0' || input[i] > '9')
+        {
+            std::cout << "Error: Invalid decimal number" << std::endl;
+            return;
+        }
+    }
+
     int dec = stoi(input);
-    if (dec < 0 || dec > 255) {
-        std::cout << "Error: Invalid decimal number" << std::endl;
+
+    if (dec < 0 || dec > 255)
+    {
+        std::cout << "Error: decimal number out of range" << std::endl;
         return;
     }
 
@@ -91,23 +111,32 @@ void decimalconversion(std::string input) {
     return;
 }
 
-int main() {
+int main()
+{
     std::string input;
     std::cout << "Enter a number to convert: ";
-    std::cin >> input;
+    std::getline(std::cin, input);
+    if (input.empty())
+    {
+        std::cout << "ERROR: must input number";
+        return -1;
+    }
     std::cout << std::endl;
 
-    std::cout << "Input number: " << input << std::endl << std::endl;
+    std::cout << "Input number: " << input << std::endl
+              << std::endl;
 
-
-    // Checking
-    if (input[0] == 'b') {
+    // Checking type of number
+    if (input[0] == 'b')
+    {
         binaryconversion(input);
     }
-    else if (input[0] == '0' && input[1] == 'x') {
+    else if (input.length() >= 2 && input[0] == '0' && input[1] == 'x')
+    {
         hexconversion(input);
     }
-    else {
+    else
+    {
         decimalconversion(input);
     }
 }
