@@ -27,6 +27,14 @@ void binaryconversion(std::string bin) {
         std::cout << "Error: Invalid binary number" << std::endl;
         return;
     }
+    for (int i = 1; i < bin.length(); i++) {
+        if (bin[i] != '0' && bin[i] != '1') {
+            std::cout << "Error: Invalid binary number" << std::endl;
+            return;
+        }
+    }
+
+    bin = bin.substr(1, 8); // Remove the 'b' prefix
 
     int dec = binary_to_decimal(bin);
 
@@ -46,6 +54,12 @@ void hexconversion(std::string hex) {
     if (hex.length() != 4) {
         std::cout << "Error: Invalid hexadecimal number" << std::endl;
         return;
+    }
+    for (int i = 2; i < hex.length(); i++) {
+        if (!((hex[i] >= '0' && hex[i] <= '9') || (hex[i] >= 'A' && hex[i] <= 'F'))) {
+            std::cout << "Error: Invalid hexadecimal number" << std::endl;
+            return;
+        }
     }
 
     std::string bin = hexadecimal_to_binary(hex);
