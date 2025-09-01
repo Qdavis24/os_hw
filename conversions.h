@@ -13,7 +13,6 @@ string decimal_to_binary(int decimal, int bits_length)
     {
         bits += "0";
     }
-    std::cout << bits << std::endl;
     int curr_position = -1;
     int curr_value = decimal;
     while (curr_value > 0)
@@ -43,7 +42,6 @@ string binary_to_hexadecimal(string bits)
     string hexadecimal = "0x";
     hexadecimal.append(1, hex_mapping[first_chunk_value]);
     hexadecimal.append(1, hex_mapping[second_chunk_value]);
-
     return hexadecimal;
 }
 string hexadecimal_to_binary(string hexadecimal)
