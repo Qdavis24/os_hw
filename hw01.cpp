@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "converstions.h"
+#include "conversions.h"
 
 // Quinn Davis and Josh Carr
 
@@ -69,7 +69,7 @@ void decimalconversion(std::string input) {
         return;
     }
 
-    std::string bin = decimal_to_binary(dec);
+    std::string bin = decimal_to_binary(dec, 8);
 
     std::string hex = binary_to_hexadecimal(bin);
 
